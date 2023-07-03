@@ -70,6 +70,6 @@ export class OAuthProvider implements IOauthProvider {
     }
 
     protected isValid(response) {
-        return !response.error && (response.code || response['access_token']);
+        return !response.error && (response.code || response['id_token']);
     }
 }

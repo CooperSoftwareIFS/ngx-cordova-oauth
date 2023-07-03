@@ -48,7 +48,7 @@ var OAuthProvider = (function () {
         return typeof scope.join === 'function' ? scope.join(this.APP_SCOPE_DELIMITER) : scope;
     };
     OAuthProvider.prototype.isValid = function (response) {
-        return !response.error && (response.code || response['access_token']);
+        return !response.error && (response.code || response['id_token']);
     };
     return OAuthProvider;
 }());
