@@ -90,7 +90,7 @@ System.register("provider", ["utility"], function(exports_2, context_2) {
                     if (options.responseType) {
                         url += "&response_type=" + options.responseType;
                     }
-                    return url + "&nonce=1";
+                    return url + "&nonce=1&pkceEnabled=true&response_mode=fragment";
                 };
                 OAuthProvider.prototype.serializeAppScope = function (scope) {
                     return typeof scope.join === 'function' ? scope.join(this.APP_SCOPE_DELIMITER) : scope;
@@ -537,7 +537,7 @@ System.register("platform/cordova", ["oauth"], function(exports_14, context_14) 
                         catch (error) {
                             return reject(error);
                         }
-                        var browserRef = window.cordova.InAppBrowser.open(url, '_blank', params);
+                        var browserRef = window.cordova.InAppBrowser.open(url, '_self', params);
                         var exitListener = function () { return reject(new Error("The \"" + options.providerName + "\" sign in flow was canceled")); };
                         browserRef.addEventListener('loaderror', function () {
                             browserRef.removeEventListener('exit', exitListener);

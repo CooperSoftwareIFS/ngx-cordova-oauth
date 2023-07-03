@@ -42,7 +42,7 @@ var OAuthProvider = (function () {
         if (options.responseType) {
             url += "&response_type=" + options.responseType;
         }
-        return url + "&nonce=1";
+        return url + "&nonce=1&pkceEnabled=true&response_mode=fragment";
     };
     OAuthProvider.prototype.serializeAppScope = function (scope) {
         return typeof scope.join === 'function' ? scope.join(this.APP_SCOPE_DELIMITER) : scope;
