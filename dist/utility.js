@@ -1,6 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.utils = void 0;
 exports.utils = {
     parseQueryString: function (url) {
         var values = url.split(/[?#]{1,2}/)[1].split('&');

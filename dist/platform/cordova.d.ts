@@ -5,5 +5,5 @@ export declare class OauthCordova extends Oauth {
         clearsessioncache: string;
         clearcache: string;
     };
-    protected openDialog(url: string, windowParams: Object, options?: any): any;
+    protected openDialog(url: string, windowParams: Object, options?: any): Promise<{}>;
 }

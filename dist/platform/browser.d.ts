@@ -6,6 +6,6 @@ export declare class OauthBrowser extends Oauth {
         location: number;
         toolbar: number;
     };
-    protected openDialog(url: string, params: Object, options?: any): any;
-    private addWindowRect;
+    protected openDialog(url: string, params: Object, options?: any): Promise<{}>;
+    private addWindowRect(params);
 }

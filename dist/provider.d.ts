@@ -12,7 +12,7 @@ export declare class OAuthProvider implements IOauthProvider {
     protected authUrl: string;
     protected defaults: Object;
     constructor(options?: IOAuthOptions);
-    get name(): any;
+    name: string;
     parseResponseInUrl(url: any): Object;
     dialogUrl(): string;
     protected optionsToDialogUrl(options: any): string;

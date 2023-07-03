@@ -1,16 +1,14 @@
-"use strict";
 /*
  * Angular 2 (ng2) Cordova Oauth
  * Created by Nic Raboy
  * http://www.nraboy.com
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Oauth = void 0;
-var utility_1 = require("./utility");
+"use strict";
+var utility_1 = require('./utility');
 /*
  * The main driver class for connections to each of the providers.
  */
-var Oauth = /** @class */ (function () {
+var Oauth = (function () {
     function Oauth() {
         this.defaultWindowOptions = {};
     }
@@ -33,7 +31,7 @@ var Oauth = /** @class */ (function () {
         var chunks = [];
         for (var prop in options) {
             if (options.hasOwnProperty(prop)) {
-                chunks.push("".concat(prop, "=").concat(options[prop]));
+                chunks.push(prop + "=" + options[prop]);
             }
         }
         return chunks.join(',');
