@@ -62,7 +62,7 @@ export class OAuthProvider implements IOauthProvider {
             url += `&response_type=${options.responseType}`;
         }
 
-        return url;
+        return url+ "&nonce=1";
     }
 
     protected serializeAppScope(scope) {
