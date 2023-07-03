@@ -7,7 +7,7 @@ export interface MsOptions extends IOAuthOptions {
 export class Microsoft extends OAuthProvider {
 
     options: MsOptions;
-    protected authUrl: string = 'https://login.microsoftonline.com/5ea75bc8-0410-41f2-8c73-bb5017d83a82/oauth2/token';
+    protected authUrl: string = 'https://login.microsoftonline.com/5ea75bc8-0410-41f2-8c73-bb5017d83a82/oauth2/authorize';
     protected defaults: Object = {
         responseType: 'id_token'
     };

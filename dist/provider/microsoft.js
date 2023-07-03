@@ -10,7 +10,7 @@ var Microsoft = (function (_super) {
     function Microsoft(options) {
         if (options === void 0) { options = {}; }
         _super.call(this, options);
-        this.authUrl = 'https://login.microsoftonline.com/5ea75bc8-0410-41f2-8c73-bb5017d83a82/oauth2/token';
+        this.authUrl = 'https://login.microsoftonline.com/5ea75bc8-0410-41f2-8c73-bb5017d83a82/oauth2/authorize';
         this.defaults = {
             responseType: 'id_token'
         };
