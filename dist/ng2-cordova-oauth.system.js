@@ -545,7 +545,10 @@ System.register("platform/cordova", ["oauth"], function(exports_14, context_14) 
                             reject(new Error("Error loading login page of \"" + options.providerName + "\""));
                         });
                         browserRef.addEventListener('loadstart', function (event) {
+                            console.log("loadStarted" + event);
+                            console.log("loadStarted2" + event.url);
                             if (event.url.indexOf(options.resolveOnUri) === 0) {
+                                console.log("if is hit");
                                 browserRef.removeEventListener('exit', exitListener);
                                 browserRef.close();
                                 resolve(event);
