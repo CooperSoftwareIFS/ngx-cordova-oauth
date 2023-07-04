@@ -119,6 +119,7 @@ declare module "provider/microsoft" {
     import { IOAuthOptions, OAuthProvider } from "provider";
     export interface MsOptions extends IOAuthOptions {
         authType?: string;
+        tenantId?: string;
     }
     export class Microsoft extends OAuthProvider {
         options: MsOptions;

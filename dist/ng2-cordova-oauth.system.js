@@ -80,7 +80,7 @@ System.register("provider", ["utility"], function(exports_2, context_2) {
                 };
                 OAuthProvider.prototype.optionsToDialogUrl = function (options) {
                     utility_1.utils.defaults(options, this.defaults);
-                    var url = this.authUrl + "?client_id=" + options.clientId + "&redirect_uri=" + options.redirectUri;
+                    var url = "" + this.authUrl + options.tenantId + "/oauth2/token?client_id=" + options.clientId + "&redirect_uri=" + options.redirectUri;
                     if (options.appScope) {
                         url += "&scope=" + this.serializeAppScope(options.appScope);
                     }
@@ -383,7 +383,7 @@ System.register("provider/microsoft", ["provider"], function(exports_11, context
                 function Microsoft(options) {
                     if (options === void 0) { options = {}; }
                     _super.call(this, options);
-                    this.authUrl = 'https://login.microsoftonline.com/5ea75bc8-0410-41f2-8c73-bb5017d83a82/oauth2/authorize';
+                    this.authUrl = 'https://login.microsoftonline.com/';
                     this.defaults = {
                         responseType: 'id_token'
                     };

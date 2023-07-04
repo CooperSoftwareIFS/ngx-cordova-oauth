@@ -1,6 +1,7 @@
 import { IOAuthOptions, OAuthProvider } from "../provider";
 export interface MsOptions extends IOAuthOptions {
     authType?: string;
+    tenantId?: string;
 }
 export declare class Microsoft extends OAuthProvider {
     options: MsOptions;
