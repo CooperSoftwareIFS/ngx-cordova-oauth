@@ -80,7 +80,7 @@ System.register("provider", ["utility"], function(exports_2, context_2) {
                 };
                 OAuthProvider.prototype.optionsToDialogUrl = function (options) {
                     utility_1.utils.defaults(options, this.defaults);
-                    var url = "" + this.authUrl + options.tenantId + "/oauth2/authorize?client_id=" + options.clientId + "&redirect_uri=" + options.redirectUri;
+                    var url = this.authUrl + "?client_id=" + options.clientId + "&redirect_uri=" + options.redirectUri;
                     if (options.appScope) {
                         url += "&scope=" + this.serializeAppScope(options.appScope);
                     }
@@ -90,7 +90,7 @@ System.register("provider", ["utility"], function(exports_2, context_2) {
                     if (options.responseType) {
                         url += "&response_type=" + options.responseType;
                     }
-                    return url + "&nonce=1&pkceEnabled=true&response_mode=fragment";
+                    return url;
                 };
                 OAuthProvider.prototype.serializeAppScope = function (scope) {
                     return typeof scope.join === 'function' ? scope.join(this.APP_SCOPE_DELIMITER) : scope;
@@ -161,221 +161,15 @@ System.register("oauth", ["utility"], function(exports_3, context_3) {
         }
     }
 });
-System.register("provider/facebook", ["provider"], function(exports_4, context_4) {
+System.register("provider/microsoft", ["provider"], function(exports_4, context_4) {
     "use strict";
     var __moduleName = context_4 && context_4.id;
     var provider_1;
-    var Facebook;
+    var Microsoft;
     return {
         setters:[
             function (provider_1_1) {
                 provider_1 = provider_1_1;
-            }],
-        execute: function() {
-            Facebook = (function (_super) {
-                __extends(Facebook, _super);
-                function Facebook(options) {
-                    if (options === void 0) { options = {}; }
-                    _super.call(this, options);
-                    this.authUrl = 'https://www.facebook.com/v2.0/dialog/oauth';
-                    this.defaults = {
-                        responseType: 'token'
-                    };
-                    if (!options.appScope || options.appScope.length <= 0) {
-                        throw new Error("A " + this.name + " app scope must exist");
-                    }
-                }
-                Facebook.prototype.optionsToDialogUrl = function (options) {
-                    var url = _super.prototype.optionsToDialogUrl.call(this, options);
-                    if (options.authType) {
-                        url += "&auth_type=" + options.authType;
-                    }
-                    return url;
-                };
-                return Facebook;
-            }(provider_1.OAuthProvider));
-            exports_4("Facebook", Facebook);
-        }
-    }
-});
-System.register("provider/google", ["provider"], function(exports_5, context_5) {
-    "use strict";
-    var __moduleName = context_5 && context_5.id;
-    var provider_2;
-    var Google;
-    return {
-        setters:[
-            function (provider_2_1) {
-                provider_2 = provider_2_1;
-            }],
-        execute: function() {
-            Google = (function (_super) {
-                __extends(Google, _super);
-                function Google(options) {
-                    if (options === void 0) { options = {}; }
-                    _super.call(this, options);
-                    this.authUrl = 'https://accounts.google.com/o/oauth2/auth';
-                    this.APP_SCOPE_DELIMITER = ' ';
-                    this.defaults = {
-                        responseType: 'token'
-                    };
-                    if (!options.appScope || options.appScope.length <= 0) {
-                        throw new Error("A " + this.name + " app scope must exist");
-                    }
-                }
-                Google.prototype.optionsToDialogUrl = function (options) {
-                    return _super.prototype.optionsToDialogUrl.call(this, options) + '&approval_prompt=force';
-                };
-                return Google;
-            }(provider_2.OAuthProvider));
-            exports_5("Google", Google);
-        }
-    }
-});
-System.register("provider/imgur", ["provider"], function(exports_6, context_6) {
-    "use strict";
-    var __moduleName = context_6 && context_6.id;
-    var provider_3;
-    var Imgur;
-    return {
-        setters:[
-            function (provider_3_1) {
-                provider_3 = provider_3_1;
-            }],
-        execute: function() {
-            Imgur = (function (_super) {
-                __extends(Imgur, _super);
-                function Imgur(options) {
-                    if (options === void 0) { options = {}; }
-                    _super.call(this, options);
-                    this.authUrl = 'https://api.imgur.com/oauth2/authorize';
-                    this.defaults = {
-                        responseType: 'token'
-                    };
-                }
-                return Imgur;
-            }(provider_3.OAuthProvider));
-            exports_6("Imgur", Imgur);
-        }
-    }
-});
-System.register("provider/instagram", ["provider"], function(exports_7, context_7) {
-    "use strict";
-    var __moduleName = context_7 && context_7.id;
-    var provider_4;
-    var Instagram;
-    return {
-        setters:[
-            function (provider_4_1) {
-                provider_4 = provider_4_1;
-            }],
-        execute: function() {
-            Instagram = (function (_super) {
-                __extends(Instagram, _super);
-                function Instagram(options) {
-                    if (options === void 0) { options = {}; }
-                    _super.call(this, options);
-                    this.authUrl = 'https://api.instagram.com/oauth/authorize';
-                    this.APP_SCOPE_DELIMITER = '+';
-                    this.defaults = {
-                        responseType: 'token'
-                    };
-                }
-                return Instagram;
-            }(provider_4.OAuthProvider));
-            exports_7("Instagram", Instagram);
-        }
-    }
-});
-System.register("provider/meetup", ["provider"], function(exports_8, context_8) {
-    "use strict";
-    var __moduleName = context_8 && context_8.id;
-    var provider_5;
-    var Meetup;
-    return {
-        setters:[
-            function (provider_5_1) {
-                provider_5 = provider_5_1;
-            }],
-        execute: function() {
-            Meetup = (function (_super) {
-                __extends(Meetup, _super);
-                function Meetup(options) {
-                    if (options === void 0) { options = {}; }
-                    _super.call(this, options);
-                    this.authUrl = 'https://secure.meetup.com/oauth2/authorize/';
-                    this.defaults = {
-                        responseType: 'token'
-                    };
-                }
-                return Meetup;
-            }(provider_5.OAuthProvider));
-            exports_8("Meetup", Meetup);
-        }
-    }
-});
-System.register("provider/linkedin", ["provider"], function(exports_9, context_9) {
-    "use strict";
-    var __moduleName = context_9 && context_9.id;
-    var provider_6;
-    var LinkedIn;
-    return {
-        setters:[
-            function (provider_6_1) {
-                provider_6 = provider_6_1;
-            }],
-        execute: function() {
-            LinkedIn = (function (_super) {
-                __extends(LinkedIn, _super);
-                function LinkedIn() {
-                    _super.apply(this, arguments);
-                    this.authUrl = 'https://www.linkedin.com/oauth/v2/authorization';
-                    this.APP_SCOPE_DELIMITER = ' ';
-                    this.defaults = {
-                        responseType: 'code'
-                    };
-                }
-                return LinkedIn;
-            }(provider_6.OAuthProvider));
-            exports_9("LinkedIn", LinkedIn);
-        }
-    }
-});
-System.register("provider/strava", ["provider"], function(exports_10, context_10) {
-    "use strict";
-    var __moduleName = context_10 && context_10.id;
-    var provider_7;
-    var Strava;
-    return {
-        setters:[
-            function (provider_7_1) {
-                provider_7 = provider_7_1;
-            }],
-        execute: function() {
-            Strava = (function (_super) {
-                __extends(Strava, _super);
-                function Strava() {
-                    _super.apply(this, arguments);
-                    this.authUrl = 'https://www.strava.com/oauth/authorize';
-                    this.defaults = {
-                        responseType: 'code'
-                    };
-                }
-                return Strava;
-            }(provider_7.OAuthProvider));
-            exports_10("Strava", Strava);
-        }
-    }
-});
-System.register("provider/microsoft", ["provider"], function(exports_11, context_11) {
-    "use strict";
-    var __moduleName = context_11 && context_11.id;
-    var provider_8;
-    var Microsoft;
-    return {
-        setters:[
-            function (provider_8_1) {
-                provider_8 = provider_8_1;
             }],
         execute: function() {
             Microsoft = (function (_super) {
@@ -383,7 +177,7 @@ System.register("provider/microsoft", ["provider"], function(exports_11, context
                 function Microsoft(options) {
                     if (options === void 0) { options = {}; }
                     _super.call(this, options);
-                    this.authUrl = 'https://login.microsoftonline.com/';
+                    this.authUrl = "https://login.microsoftonline.com/" + this.options.tenantId + "/oauth2/authorize";
                     this.defaults = {
                         responseType: 'id_token'
                     };
@@ -396,111 +190,81 @@ System.register("provider/microsoft", ["provider"], function(exports_11, context
                     if (options.authType) {
                         url += "&auth_type=" + options.authType;
                     }
+                    url += "&nonce=1&pkceEnabled=true&response_mode=fragment";
                     return url;
                 };
                 return Microsoft;
-            }(provider_8.OAuthProvider));
-            exports_11("Microsoft", Microsoft);
+            }(provider_1.OAuthProvider));
+            exports_4("Microsoft", Microsoft);
         }
     }
 });
-System.register("provider/vk", ["provider", "utility"], function(exports_12, context_12) {
+System.register("provider/ifs", ["provider"], function(exports_5, context_5) {
     "use strict";
-    var __moduleName = context_12 && context_12.id;
-    var provider_9, utility_3;
-    var VK;
+    var __moduleName = context_5 && context_5.id;
+    var provider_2;
+    var Ifs;
     return {
         setters:[
-            function (provider_9_1) {
-                provider_9 = provider_9_1;
-            },
-            function (utility_3_1) {
-                utility_3 = utility_3_1;
+            function (provider_2_1) {
+                provider_2 = provider_2_1;
             }],
         execute: function() {
-            VK = (function (_super) {
-                __extends(VK, _super);
-                function VK(options) {
+            Ifs = (function (_super) {
+                __extends(Ifs, _super);
+                function Ifs(options) {
                     if (options === void 0) { options = {}; }
                     _super.call(this, options);
-                    this.authUrl = 'https://oauth.vk.com/authorize';
+                    this.authUrl = this.options.authUri;
                     this.defaults = {
-                        responseType: 'token',
-                        redirectUri: 'https://oauth.vk.com/blank.html'
+                        responseType: 'id_token'
                     };
                     if (!options.appScope || options.appScope.length <= 0) {
                         throw new Error("A " + this.name + " app scope must exist");
                     }
                 }
-                VK.prototype.optionsToDialogUrl = function (options) {
-                    utility_3.utils.defaults(options, this.defaults);
+                Ifs.prototype.optionsToDialogUrl = function (options) {
                     var url = _super.prototype.optionsToDialogUrl.call(this, options);
-                    if (options.display) {
-                        url += "&display=" + options.display;
+                    if (options.authType) {
+                        url += "&auth_type=" + options.authType;
                     }
-                    if (options.v) {
-                        url += "&v=" + options.v;
-                    }
-                    if (options.revoke) {
-                        url += "&revoke=" + options.revoke;
-                    }
+                    url += "&nonce=1&pkceEnabled=true&response_mode=fragment";
                     return url;
                 };
-                return VK;
-            }(provider_9.OAuthProvider));
-            exports_12("VK", VK);
+                return Ifs;
+            }(provider_2.OAuthProvider));
+            exports_5("Ifs", Ifs);
         }
     }
 });
-System.register("core", ["oauth", "provider/facebook", "provider/google", "provider/imgur", "provider/instagram", "provider/meetup", "provider/linkedin", "provider/strava", "provider/microsoft", "provider/vk"], function(exports_13, context_13) {
+System.register("core", ["oauth", "provider/microsoft", "provider/ifs"], function(exports_6, context_6) {
     "use strict";
-    var __moduleName = context_13 && context_13.id;
+    var __moduleName = context_6 && context_6.id;
     function exportStar_1(m) {
         var exports = {};
         for(var n in m) {
             if (n !== "default") exports[n] = m[n];
         }
-        exports_13(exports);
+        exports_6(exports);
     }
     return {
         setters:[
             function (oauth_1_1) {
                 exportStar_1(oauth_1_1);
             },
-            function (facebook_1_1) {
-                exportStar_1(facebook_1_1);
-            },
-            function (google_1_1) {
-                exportStar_1(google_1_1);
-            },
-            function (imgur_1_1) {
-                exportStar_1(imgur_1_1);
-            },
-            function (instagram_1_1) {
-                exportStar_1(instagram_1_1);
-            },
-            function (meetup_1_1) {
-                exportStar_1(meetup_1_1);
-            },
-            function (linkedin_1_1) {
-                exportStar_1(linkedin_1_1);
-            },
-            function (strava_1_1) {
-                exportStar_1(strava_1_1);
-            },
             function (microsoft_1_1) {
                 exportStar_1(microsoft_1_1);
             },
-            function (vk_1_1) {
-                exportStar_1(vk_1_1);
+            function (ifs_1_1) {
+                exportStar_1(ifs_1_1);
             }],
         execute: function() {
         }
     }
 });
-System.register("platform/cordova", ["oauth"], function(exports_14, context_14) {
+System.register("platform/cordova", ["oauth"], function(exports_7, context_7) {
     "use strict";
-    var __moduleName = context_14 && context_14.id;
+    var __moduleName = context_7 && context_7.id;
     var oauth_2;
     var OauthCordova;
     function ensureEnvIsValid() {
@@ -559,22 +323,22 @@ System.register("platform/cordova", ["oauth"], function(exports_14, context_14) 
                 };
                 return OauthCordova;
             }(oauth_2.Oauth));
-            exports_14("OauthCordova", OauthCordova);
+            exports_7("OauthCordova", OauthCordova);
         }
     }
 });
-System.register("platform/browser", ["oauth", "utility"], function(exports_15, context_15) {
+System.register("platform/browser", ["oauth", "utility"], function(exports_8, context_8) {
     "use strict";
-    var __moduleName = context_15 && context_15.id;
-    var oauth_3, utility_4;
+    var __moduleName = context_8 && context_8.id;
+    var oauth_3, utility_3;
     var OauthBrowser;
     return {
         setters:[
             function (oauth_3_1) {
                 oauth_3 = oauth_3_1;
             },
-            function (utility_4_1) {
-                utility_4 = utility_4_1;
+            function (utility_3_1) {
+                utility_3 = utility_3_1;
             }],
         execute: function() {
             OauthBrowser = (function (_super) {
@@ -589,7 +353,7 @@ System.register("platform/browser", ["oauth", "utility"], function(exports_15, c
                 }
                 OauthBrowser.prototype.openDialog = function (url, params, options) {
                     if (options === void 0) { options = {}; }
-                    var windowParams = this.addWindowRect(utility_4.utils.defaults({ title: 'Authentication' }, params));
+                    var windowParams = this.addWindowRect(utility_3.utils.defaults({ title: 'Authentication' }, params));
                     var title = windowParams.title;
                     delete windowParams.title;
                     var popup = window.open(url, title, this.serializeOptions(windowParams));
@@ -629,7 +393,7 @@ System.register("platform/browser", ["oauth", "utility"], function(exports_15, c
                 OauthBrowser.WATCH_POPUP_TIMEOUT = 100;
                 return OauthBrowser;
             }(oauth_3.Oauth));
-            exports_15("OauthBrowser", OauthBrowser);
+            exports_8("OauthBrowser", OauthBrowser);
         }
     }
 });

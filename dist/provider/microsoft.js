@@ -10,7 +10,7 @@ var Microsoft = (function (_super) {
     function Microsoft(options) {
         if (options === void 0) { options = {}; }
         _super.call(this, options);
-        this.authUrl = 'https://login.microsoftonline.com/';
+        this.authUrl = "https://login.microsoftonline.com/" + this.options.tenantId + "/oauth2/authorize";
         this.defaults = {
             responseType: 'id_token'
         };
@@ -23,6 +23,7 @@ var Microsoft = (function (_super) {
         if (options.authType) {
             url += "&auth_type=" + options.authType;
         }
+        url += "&nonce=1&pkceEnabled=true&response_mode=fragment";
         return url;
     };
     return Microsoft;

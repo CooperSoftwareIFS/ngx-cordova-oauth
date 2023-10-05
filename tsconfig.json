@@ -16,12 +16,8 @@
         "src/platform/cordova.ts",
         "src/platform/browser.ts",
         "src/utility.ts",
-        "src/provider/facebook.ts",
-        "src/provider/google.ts",
-        "src/provider/imgur.ts",
-        "src/provider/instagram.ts",
-        "src/provider/meetup.ts",
         "src/provider/microsoft.ts",
+        "src/provider/ifs.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "exclude": [

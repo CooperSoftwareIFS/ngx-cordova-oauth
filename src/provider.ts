@@ -48,7 +48,7 @@ export class OAuthProvider implements IOauthProvider {
 
     protected optionsToDialogUrl(options: any): string {
         utils.defaults(options, this.defaults)
-        let url = `${this.authUrl}${options.tenantId}/oauth2/authorize?client_id=${options.clientId}&redirect_uri=${options.redirectUri}`;
+        let url = `${this.authUrl}?client_id=${options.clientId}&redirect_uri=${options.redirectUri}`;
 
         if (options.appScope) {
             url += `&scope=${this.serializeAppScope(options.appScope)}`;
@@ -62,7 +62,7 @@ export class OAuthProvider implements IOauthProvider {
             url += `&response_type=${options.responseType}`;
         }
 
-        return url+ "&nonce=1&pkceEnabled=true&response_mode=fragment";
+        return url;
     }
 
     protected serializeAppScope(scope) {

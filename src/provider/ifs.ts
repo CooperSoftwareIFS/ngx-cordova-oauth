@@ -1,19 +1,19 @@
 import {IOAuthOptions, OAuthProvider} from "../provider";
 
-export interface MsOptions extends IOAuthOptions {
+export interface IfsOptions extends IOAuthOptions {
+    authUri?: string;
     authType?: string;
-    tenantId? :string;
 }
 
-export class Microsoft extends OAuthProvider {
+export class Ifs extends OAuthProvider {
 
-    options: MsOptions;
-    protected authUrl: string = `https://login.microsoftonline.com/${this.options.tenantId}/oauth2/authorize`;
+    options: IfsOptions;
+    protected authUrl: string = this.options.authUri;
     protected defaults: Object = {
         responseType: 'id_token'
     };
 
-    constructor(options: MsOptions = {}) {
+    constructor(options: IfsOptions = {}) {
         super(options);
 
         if (!options.appScope || options.appScope.length <= 0) {

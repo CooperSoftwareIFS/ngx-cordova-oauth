@@ -40,81 +40,6 @@ declare module "oauth" {
         parseResponseInUrl(url: string): Object;
     }
 }
-declare module "provider/facebook" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IFacebookOptions extends IOAuthOptions {
-        authType?: string;
-    }
-    export class Facebook extends OAuthProvider {
-        options: IFacebookOptions;
-        protected authUrl: string;
-        protected defaults: Object;
-        constructor(options?: IFacebookOptions);
-        protected optionsToDialogUrl(options: any): string;
-    }
-}
-declare module "provider/google" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IGoogleOptions extends IOAuthOptions {
-    }
-    export class Google extends OAuthProvider {
-        options: IGoogleOptions;
-        protected authUrl: string;
-        protected APP_SCOPE_DELIMITER: string;
-        protected defaults: Object;
-        constructor(options?: IGoogleOptions);
-        protected optionsToDialogUrl(options: any): string;
-    }
-}
-declare module "provider/imgur" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IImgurOptions extends IOAuthOptions {
-    }
-    export class Imgur extends OAuthProvider {
-        options: IImgurOptions;
-        protected authUrl: string;
-        protected defaults: Object;
-        constructor(options?: IImgurOptions);
-    }
-}
-declare module "provider/instagram" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IInstagramOptions extends IOAuthOptions {
-    }
-    export class Instagram extends OAuthProvider {
-        options: IInstagramOptions;
-        protected authUrl: string;
-        protected APP_SCOPE_DELIMITER: string;
-        protected defaults: Object;
-        constructor(options?: IInstagramOptions);
-    }
-}
-declare module "provider/meetup" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IMeetupOptions extends IOAuthOptions {
-    }
-    export class Meetup extends OAuthProvider {
-        options: IMeetupOptions;
-        protected authUrl: string;
-        protected defaults: Object;
-        constructor(options?: IMeetupOptions);
-    }
-}
-declare module "provider/linkedin" {
-    import { OAuthProvider } from "provider";
-    export class LinkedIn extends OAuthProvider {
-        protected authUrl: string;
-        protected APP_SCOPE_DELIMITER: string;
-        protected defaults: Object;
-    }
-}
-declare module "provider/strava" {
-    import { OAuthProvider } from "provider";
-    export class Strava extends OAuthProvider {
-        protected authUrl: string;
-        protected defaults: Object;
-    }
-}
 declare module "provider/microsoft" {
     import { IOAuthOptions, OAuthProvider } from "provider";
     export interface MsOptions extends IOAuthOptions {
@@ -129,32 +54,24 @@ declare module "provider/microsoft" {
         protected optionsToDialogUrl(options: any): string;
     }
 }
-declare module "provider/vk" {
-    import { OAuthProvider, IOAuthOptions } from "provider";
-    export interface IVKOptions extends IOAuthOptions {
-        v?: string;
-        display?: string;
-        revoke?: string;
+declare module "provider/ifs" {
+    import { IOAuthOptions, OAuthProvider } from "provider";
+    export interface IfsOptions extends IOAuthOptions {
+        authUri?: string;
+        authType?: string;
     }
-    export class VK extends OAuthProvider {
-        options: IVKOptions;
+    export class Ifs extends OAuthProvider {
+        options: IfsOptions;
         protected authUrl: string;
         protected defaults: Object;
-        constructor(options?: IVKOptions);
+        constructor(options?: IfsOptions);
         protected optionsToDialogUrl(options: any): string;
     }
 }
 declare module "core" {
     export * from "oauth";
-    export * from "provider/facebook";
-    export * from "provider/google";
-    export * from "provider/imgur";
-    export * from "provider/instagram";
-    export * from "provider/meetup";
-    export * from "provider/linkedin";
-    export * from "provider/strava";
     export * from "provider/microsoft";
-    export * from "provider/vk";
+    export * from "provider/ifs";
 }
 declare module "platform/cordova" {
     import { Oauth } from "oauth";
