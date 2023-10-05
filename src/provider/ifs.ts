@@ -10,7 +10,7 @@ export class Ifs extends OAuthProvider {
     options: IfsOptions;
     protected authUrl: string = this.options.authUri;
     protected defaults: Object = {
-        responseType: 'id_token'
+        responseType: 'code'
     };
 
     constructor(options: IfsOptions = {}) {
@@ -27,8 +27,6 @@ export class Ifs extends OAuthProvider {
         if (options.authType) {
             url += `&auth_type=${options.authType}`;
         }
-
-        url += "&nonce=1&pkceEnabled=true&response_mode=fragment"
 
         return url;
     }

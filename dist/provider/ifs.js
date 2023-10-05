@@ -12,7 +12,7 @@ var Ifs = (function (_super) {
         _super.call(this, options);
         this.authUrl = this.options.authUri;
         this.defaults = {
-            responseType: 'id_token'
+            responseType: 'code'
         };
         if (!options.appScope || options.appScope.length <= 0) {
             throw new Error("A " + this.name + " app scope must exist");
@@ -23,7 +23,6 @@ var Ifs = (function (_super) {
         if (options.authType) {
             url += "&auth_type=" + options.authType;
         }
-        url += "&nonce=1&pkceEnabled=true&response_mode=fragment";
         return url;
     };
     return Ifs;
